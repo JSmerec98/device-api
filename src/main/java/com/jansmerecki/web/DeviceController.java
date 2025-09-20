@@ -3,6 +3,7 @@ package com.jansmerecki.web;
 import com.jansmerecki.domain.Device;
 import com.jansmerecki.dto.DeviceResponse;
 import com.jansmerecki.dto.RegisterDeviceRequest;
+import com.jansmerecki.dto.TopologyNode;
 import com.jansmerecki.service.DeviceService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -39,6 +40,16 @@ public class DeviceController {
     @GetMapping("/devices/{mac}")
     public DeviceResponse byMac(@PathVariable String mac) {
         return toResponse(deviceService.getByMac(mac));
+    }
+
+    @GetMapping("/topology")
+    public List<TopologyNode> fullTopology() {
+        return deviceService.getFullTopology();
+    }
+
+    @GetMapping("/topology/{mac}")
+    public TopologyNode topologyFrom(@PathVariable("mac") String mac) {
+        return deviceService.getTopologyFrom(mac);
     }
 
     private DeviceResponse toResponse(Device d) {
