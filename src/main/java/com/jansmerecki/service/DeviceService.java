@@ -3,7 +3,6 @@ package com.jansmerecki.service;
 import com.jansmerecki.domain.Device;
 import com.jansmerecki.domain.DeviceType;
 import com.jansmerecki.repository.DeviceRepository;
-import com.jansmerecki.util.MacUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -26,7 +25,7 @@ public class DeviceService {
         String normalizedUplink = normalize(uplink);
 
         if (deviceRepository.existsByMac(normalizedMac)) {
-            throw new IllegalArgumentException(String.format("Device with MAC %s already exists: " , normalizedMac));
+            throw new IllegalArgumentException(String.format("Device with MAC %s already exists: ", normalizedMac));
         }
         Device device = new Device(deviceType, normalizedMac, normalizedUplink);
         return deviceRepository.save(device);
