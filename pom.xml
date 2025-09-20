@@ -57,7 +57,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.jansmerecki.Main</mainClass>
+                    <mainClass>com.jansmerecki.DeviceTopologyApplication</mainClass>
                 </configuration>
             </plugin>
             <plugin>
