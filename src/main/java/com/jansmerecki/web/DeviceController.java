@@ -2,7 +2,7 @@ package com.jansmerecki.web;
 
 import com.jansmerecki.domain.Device;
 import com.jansmerecki.dto.DeviceResponse;
-import com.jansmerecki.dto.RegisterDeviceRequest;
+import com.jansmerecki.dto.DeviceRequest;
 import com.jansmerecki.dto.TopologyNode;
 import com.jansmerecki.service.DeviceService;
 import jakarta.validation.Valid;
@@ -23,7 +23,7 @@ public class DeviceController {
     }
 
     @PostMapping("/devices")
-    public ResponseEntity<DeviceResponse> register(@Valid @RequestBody RegisterDeviceRequest request) {
+    public ResponseEntity<DeviceResponse> register(@Valid @RequestBody DeviceRequest request) {
         Device saved = deviceService.register(request.deviceType(), request.macAddress(), request.uplinkMacAddress());
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -38,7 +38,7 @@ public class DeviceController {
     }
 
     @GetMapping("/devices/{mac}")
-    public DeviceResponse byMac(@PathVariable String mac) {
+    public DeviceResponse byMac(@PathVariable("mac") String mac) {
         return toResponse(deviceService.getByMac(mac));
     }
 
